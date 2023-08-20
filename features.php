@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Chaitanya Enterprises</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="icon" type="image/png" href="images/fav/favicon.jpg">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="css/templatemo-style.css">
+  <style>
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .image-container img {
+      width: 50%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  </style>
+
+</head>
+
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+  <!-- PRE LOADER -->
+  <section class="preloader">
+    <div class="spinner">
+
+      <span class="spinner-rotate"></span>
+
+    </div>
+  </section>
+
+
+  <!-- MENU -->
+  <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 80px;max-height: 80px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav navbar-nav-first">
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default" data-bs-toggle="dropdown" aria-expanded="false"
+              style="color: grey; font-size: 19px;">
+              Companies
+            </button>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link" Chaitanya Enterprises href="product_details.php#ch_en"> Chaitanya
+                  Enterprises</a></li>
+              <li class="nav-item"><a class="nav-link" href="product_details.php#ss_en">Shri Siddhivinayak
+                  Enterprises</a>
+              </li>
+          </div>
+
+          <li class="nav-item"><a class="nav-link" href="product_details.php">Product Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.php">Admin Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Gallary -->
+  <section id="feature">
+
+    <div id="gallery-image-container">
+      <!-- Carousel wrapper -->
+      <div id="carouselBasicExample" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+
+        <!-- Inner -->
+        <div class="carousel-inner">
+          <!-- Single item -->
+          <div class="carousel-item active">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp" class="d-block w-100"
+              alt="Sunset Over the City" />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>First slide label</h5>
+              <p>
+                Nulla vitae elit libero, a pharetra augue mollis interdum.
+              </p>
+            </div>
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(22).webp" class="d-block w-100"
+              alt="Canyon at Nigh" />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Second slide label</h5>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp" class="d-block w-100"
+              alt="Cliff Above a Stormy Sea" />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Third slide label</h5>
+              <p>
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Inner -->
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample"
+          data-mdb-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample"
+          data-mdb-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- Carousel wrapper -->
+    </div>
+  </section>
+  <section>
+    <!-- Carousel wrapper -->
+    <div id="carouselVideoExample" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button" data-mdb-target="#carouselVideoExample" data-mdb-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-mdb-target="#carouselVideoExample" data-mdb-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-mdb-target="#carouselVideoExample" data-mdb-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+
+      <!-- Inner -->
+      <div class="carousel-inner">
+        <!-- Single item -->
+        <div class="carousel-item active">
+          <video class="img-fluid" autoplay loop muted>
+            <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
+          </video>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First slide label</h5>
+            <p>
+              Nulla vitae elit libero, a pharetra augue mollis interdum.
+            </p>
+          </div>
+        </div>
+
+        <!-- Single item -->
+        <div class="carousel-item">
+          <video class="img-fluid" autoplay loop muted>
+            <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4" />
+          </video>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+          </div>
+        </div>
+
+        <!-- Single item -->
+        <div class="carousel-item">
+          <video class="img-fluid" autoplay loop muted>
+            <source src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4" type="video/mp4" />
+          </video>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Inner -->
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-mdb-target="#carouselVideoExample" data-mdb-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-mdb-target="#carouselVideoExample" data-mdb-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- Carousel wrapper -->
+  </section>
+
+
+
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-6 col-sm-12">
+          <form id="contact-form" role="form" action="" method="post">
+            <div class="section-title">
+              <h2>Contact us <small>we love conversations. let us talk!</small></h2>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+              <input type="text" class="form-control" placeholder="Enter full name" name="name" required="">
+
+              <input type="email" class="form-control" placeholder="Enter mobile number" name="email" required="">
+
+              <textarea class="form-control" rows="6" placeholder="Tell us about your message" name="message"
+                required=""></textarea>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+              <input type="submit" class="form-control" name="send message" value="Send Message">
+            </div>
+            +
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-4 col-sm-6">
+          <div class="footer-info">
+            <div class="section-title">
+              <h2>Location</h2>
+            </div>
+            <address>
+              <p>
+                Some address here<br>
+                another line for the address,<br>
+                Pune, Maharashtra<br>
+              </p>
+            </address>
+
+            <ul class="social-icon">
+              <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+              <li><a href="#" class="fa fa-twitter"></a></li>
+              <li><a href="#" class="fa fa-instagram"></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+          <div class="footer-info">
+            <div class="section-title">
+              <h2>Contact Info</h2>
+            </div>
+            <address>
+              <p>+91 934858477</p>
+              <p><a href="mailto:youremail.com">somemail@gmail.com</a></p>
+            </address>
+
+            <div class="footer_menu">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+          <div class="footer-info newsletter-form">
+            <div>
+              <p>Designed & Developed by <i>Company_Name Limited </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- SCRIPTS -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/smoothscroll.js"></script>
+  <script src="js/custom.js"></script>
+
+  <script>
+    // Array of image file paths
+
+    <?php
+    $directory = "images/gallery/";
+    $images = [];
+
+    // Scan the directory and retrieve image file names
+    $files = scandir($directory);
+    foreach ($files as $file) {
+      if (is_file($directory . $file)) {
+        $images[] = $directory . $file;
+      }
+    }
+    ?>
+    const images = <?php echo json_encode($images); ?>
+
+    var galleryContainer = document.getElementById('gallery-image-container');
+    var imageContainer = document.createElement('div');
+    imageContainer.className = 'image-container';
+
+    for (var i = 0; i < images.length; i++) {
+      var image = document.createElement('img');
+      image.src = images[i];
+      imageContainer.appendChild(image);
+    }
+
+    galleryContainer.appendChild(imageContainer);
+
+
+    // Function to update the image source based on the current index
+    function updateImage() {
+      currentImage.src = images[currentIndex];
+    }
+
+    // Event listener for the previous button
+    prevButton.addEventListener('click', () => {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+      }
+      updateImage();
+    });
+
+    // Event listener for the next button
+    nextButton.addEventListener('click', () => {
+      currentIndex++;
+      if (currentIndex >= images.length) {
+        currentIndex = 0;
+      }
+      updateImage();
+    });
+
+    // Initialize the image on page load
+    updateImage();
+  </script>
+</body>
+
+</html>

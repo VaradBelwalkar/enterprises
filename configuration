@@ -1,0 +1,14 @@
+
+#load the database:
+
+mysql -u your_username -p your_database_name < backup.sql
+
+
+#Allow API authentication
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '<new_password>';
+
+
+#Change Password
+ALTER USER 'root'@'host' IDENTIFIED BY '<new_password>';
+
