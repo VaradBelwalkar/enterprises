@@ -79,11 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      </section>
 
 
-      <!-- MENU -->
-      <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
+     <!-- MENU -->
+     <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
           <div class="container">
-               <a class="navbar-brand" href="#">
-                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 80px;max-height: 80px;">
+               <a class="navbar-brand" href="index.php">
+                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 50px;max-height: 50px; padding-bottom:10px;">
+                    <span style="color:green;">Shree Siddhivinayak Enterprises</span>
                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -93,7 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                          <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
                          <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
-                         <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
                          <div class="btn-group">
                               <button type="button" class="btn btn-default" data-bs-toggle="dropdown"
                                    aria-expanded="false" style="color: grey; font-size: 19px;">

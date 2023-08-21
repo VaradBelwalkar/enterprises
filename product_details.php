@@ -11,7 +11,7 @@
      <meta name="keywords" content="">
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-     <link rel="icon" type="image/png" href="images/fav/favicon.png">
+     <link rel="icon" type="image/png" href="images/fav/favicon.jpg">
 
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -38,8 +38,9 @@
      <!-- MENU -->
      <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
           <div class="container">
-               <a class="navbar-brand" href="#">
-                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 80px;max-height: 80px;">
+               <a class="navbar-brand" href="index.php">
+                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 50px;max-height: 50px; padding-bottom:10px;">
+                    <span style="color:green;">Shree Siddhivinayak Enterprises</span>
                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -49,7 +50,6 @@
                          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                          <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
                          <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
-                         <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
                          <div class="btn-group">
                               <button type="button" class="btn btn-default" data-bs-toggle="dropdown"
                                    aria-expanded="false" style="color: grey; font-size: 19px;">
@@ -98,7 +98,7 @@
           echo '<div id="ch_en" class="row" style="max-width: 100%; padding-left: 20%; padding-right: 20%;">';
           echo '<table class="table table-bordered disclosure_data" style="border-width: 0.1cm;">';
           echo '<tr class="table-active">';
-          echo '<td colspan="3"><h4><b><a href="all_products.php">CHAITANYA ENTERPRISES </a></b></h4></td>';
+          echo '<td colspan="3"><h4><b><a href="all_products.php?tab=ch_en">CHAITANYA ENTERPRISES </a></b></h4></td>';
           echo '</tr>';
           echo '<tr class="table-primary">';
           echo '<td><b>Company</b></td>';
@@ -109,7 +109,7 @@
           while ($row = mysqli_fetch_assoc($result)) {
                echo '<tr class="">';
                echo '<td>' . $row['Company'] . '</td>';
-               echo '<td> <a href="products.php?product=' .$row['prd_name']. '">' . $row['Product'] . '</a></td>';
+               echo '<td> <a href="products.php?tab=ch_en&product=' .$row['prd_name']. '">' . $row['Product'] . '</a></td>';
                echo '</tr>';
           }
 
@@ -130,7 +130,7 @@
           echo '<div id="ss_en" class="row" style="max-width: 100%; padding-left: 20%; padding-right: 20%;">';
           echo '<table class="table table-bordered disclosure_data" style="border-width: 0.1cm;">';
           echo '<tr class="table-active">';
-          echo '<td colspan="3"><h4><b><a href="all_products.php" >SHRI SIDDHIVINAYAK ENTERPRISES </a></b></h4></td>';
+          echo '<td colspan="3"><h4><b><a href="all_products.php?tab=ss_en" >SHRI SIDDHIVINAYAK ENTERPRISES </a></b></h4></td>';
           echo '</tr>';
           echo '<tr class="table-primary">';
           echo '<td><b>Company</b></td>';
@@ -141,7 +141,7 @@
           while ($row = mysqli_fetch_assoc($result)) {
                echo '<tr class="">';
                echo '<td>' . $row['Company'] . '</td>';
-               echo '<td> <a href="products.php?product=' .$row['prd_name']. '">' . $row['Product'] . '</a></td>';
+               echo '<td> <a href="products.php?tab=ss_en&product=' .$row['prd_name']. '">' . $row['Product'] . '</a></td>';
 
                echo '</tr>';
           }

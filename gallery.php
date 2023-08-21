@@ -3,7 +3,7 @@
 
 <head>
 
-  <title>Chaitanya Enterprises</title>
+  <title>Shree Siddhivinayak Enterprises</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="description" content="">
@@ -47,41 +47,41 @@
   </section>
 
 
-  <!-- MENU -->
-  <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 80px;max-height: 80px;">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav navbar-nav-first">
-          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
-          <div class="btn-group">
-            <button type="button" class="btn btn-default" data-bs-toggle="dropdown" aria-expanded="false"
-              style="color: grey; font-size: 19px;">
-              Companies
-            </button>
-            <ul class="dropdown-menu">
-              <li class="nav-item"><a class="nav-link" Chaitanya Enterprises href="product_details.php#ch_en"> Chaitanya
-                  Enterprises</a></li>
-              <li class="nav-item"><a class="nav-link" href="product_details.php#ss_en">Shri Siddhivinayak
-                  Enterprises</a>
-              </li>
-          </div>
+     <!-- MENU -->
+     <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
+          <div class="container">
+               <a class="navbar-brand" href="index.php">
+                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 50px;max-height: 50px; padding-bottom:10px;">
+                    <span style="color:green;">Shree Siddhivinayak Enterprises</span>
+               </a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav navbar-nav-first">
+                         <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                         <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
+                         <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
+                         <div class="btn-group">
+                              <button type="button" class="btn btn-default" data-bs-toggle="dropdown"
+                                   aria-expanded="false" style="color: grey; font-size: 19px;">
+                                   Companies
+                              </button>
+                              <ul class="dropdown-menu">
+                                   <li class="nav-item"><a class="nav-link" Chaitanya Enterprises
+                                             href="product_details.php#ch_en"> Chaitanya Enterprises</a></li>
+                                   <li class="nav-item"><a class="nav-link" href="product_details.php#ss_en">Shri Siddhivinayak
+                                             Enterprises</a>
+                                   </li>
+                         </div>
 
-          <li class="nav-item"><a class="nav-link" href="product_details.php">Product Details</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.php">Admin Login</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+                         <li class="nav-item"><a class="nav-link" href="product_details.php">Product Details</a></li>
+                         <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
+                         <li class="nav-item"><a class="nav-link" href="login.php">Admin Login</a></li>
+                    </ul>
+               </div>
+          </div>
+     </nav>
 
   <!-- Gallary -->
   <section id="feature" style="margin-bottom:80px;">
@@ -107,7 +107,7 @@
         foreach ($imageFiles as $index => $imageFile) {
             if ($imageFile !== '.' && $imageFile !== '..') {
                 echo '<div class="carousel-item gallery-image-container ' . ($slideIndex === 0 ? 'active' : '') . '">
-                          <img src="' . $imageDirectory . $imageFile . '" class="d-block w-100" alt="Slide ' . ($slideIndex + 1) . '">
+                          <img style="border-radius:30px;" src="' . $imageDirectory . $imageFile . '" class="d-block w-100" alt="Slide ' . ($slideIndex + 1) . '">
                       </div>';
                 $slideIndex++;
             }

@@ -3,7 +3,7 @@
 
 <head>
 
-     <title>Chaitanya Enterprises</title>
+     <title>Shree Siddhivinayak Enterprises</title>
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -34,8 +34,9 @@
      <!-- MENU -->
      <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
           <div class="container">
-               <a class="navbar-brand" href="#">
-                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 80px;max-height: 80px;">
+               <a class="navbar-brand" href="index.php">
+                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 50px;max-height: 50px; padding-bottom:10px;">
+                    <span style="color:green;">Shree Siddhivinayak Enterprises</span>
                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -45,7 +46,6 @@
                          <li class="nav-item"><a class="nav-link" href="#top">Home</a></li>
                          <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
                          <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
-                         <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
                          <div class="btn-group">
                               <button type="button" class="btn btn-default" data-bs-toggle="dropdown"
                                    aria-expanded="false" style="color: grey; font-size: 19px;">
@@ -60,7 +60,6 @@
                          </div>
 
                          <li class="nav-item"><a class="nav-link" href="product_details.php">Product Details</a></li>
-                         <li class="nav-item"><a class="nav-link" href="products.php">Product</a></li>
                          <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
                          <li class="nav-item"><a class="nav-link" href="login.php">Admin Login</a></li>
                     </ul>
@@ -70,44 +69,35 @@
 
 
      <!-- HOME -->
-     <section id="home">
-          <div class="row">
+     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <?php
+            $imageDir = 'images/carousel/';
+            $images = scandir($imageDir);
+            $firstImage = true;
 
-               <div class="owl-carousel owl-theme home-slider">
-                    <div class="item item-first">
-                         <div class="caption">
-                              <div class="container">
-                                   <div class="col-md-6 col-sm-12">
-                                        <h1>Chaitanya Enterprises</h1>
-                                        <h3>Kolhapur, Maharashtra</h3>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-
-                    <div class="item item-second">
-                         <div class="caption">
-                              <div class="container">
-                                   <div class="col-md-6 col-sm-12">
-                                        <h1>Infrastructure</h1>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-
-                    <div class="item item-third">
-                         <div class="caption">
-                              <div class="container">
-                                   <div class="col-md-6 col-sm-12">
-                                        <h1>Our best infrastructure</h1>
-
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
-     </section>
+            foreach ($images as $image) {
+                if ($image !== '.' && $image !== '..') {
+                    $activeClass = $firstImage ? 'active' : '';
+                    echo '
+                        <div class="carousel-item ' . $activeClass . '">
+                            <img src="' . $imageDir . $image . '" class="d-block w-100" alt="Carousel Image">
+                        </div>
+                    ';
+                    $firstImage = false;
+                }
+            }
+            ?>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
      <!-- ABOUT -->
      <section id="about">
           <div class="container">
@@ -115,7 +105,7 @@
 
                     <div class="col-md-16 col-sm-12">
                          <div class="about-info">
-                              <h2>Book your meeting now!</h2>
+                              <h2>Largest SuperStockist in Locality!</h2>
                               <P style="font-size: large;">
                                    <?php
 
@@ -205,7 +195,7 @@
                                         ?>
                                         <br>
                                         Lead Manager <br>
-                                        Chaitanya Enterprises <br>
+                                        Shree Siddhivinayak Enterprises <br>
                                         Pune, Maharashtra
                               </div>
                          </div>

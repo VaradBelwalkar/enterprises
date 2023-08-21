@@ -1,0 +1,37 @@
+/* about.css */
+.hero {
+    background-image: url('path-to-your-image.jpg');
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero-title {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+}
+
+.content-heading {
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.content-text {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.contact-info {
+    margin-top: 40px;
+}
+
+.contact-details {
+    font-size: 16px;
+    margin-bottom: 10px;
+}

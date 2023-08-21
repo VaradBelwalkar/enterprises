@@ -31,8 +31,9 @@
      <!-- MENU -->
      <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
           <div class="container">
-               <a class="navbar-brand" href="#">
-                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 80px;max-height: 80px;">
+               <a class="navbar-brand" href="index.php">
+                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 50px;max-height: 50px; padding-bottom:10px;">
+                    <span style="color:green;">Shree Siddhivinayak Enterprises</span>
                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -42,7 +43,6 @@
                          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                          <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
                          <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
-                         <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
                          <div class="btn-group">
                               <button type="button" class="btn btn-default" data-bs-toggle="dropdown"
                                    aria-expanded="false" style="color: grey; font-size: 19px;">
@@ -64,12 +64,12 @@
           </div>
      </nav>
    <!-- CONTACT -->
-   <section id="contact" style="background-color: #f8f9fa;">
+   <section id="contact" style="background-color: #f8f9fa; text-align: center;">
       <div class="container">
          <div class="row justify-content-center mt-5">
             <div class="col-lg-10">
                <div class="text-center mb-4">
-                  <h1 class="display-4 text-success">Chaitanya Enterprises</h1>
+                  <h1 class="display-4 text-success">Shree Siddhivinayak Enterprises</h1>
                </div>
                <div class="row text-success mb-5">
                   <div class="col-md-4">

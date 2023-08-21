@@ -13,7 +13,8 @@ if ($conn->connect_errno) {
 if (isset($_GET['product'])) {
      $prd_name = $_GET['product'];
 
- $query = 'SELECT * FROM products WHERE prd_name="'. $prd_name.'";';
+ $query = 'SELECT * FROM products  INNER JOIN '.$_GET['tab'] .' on products.prd_name='.$_GET['tab'].'.prd_name WHERE products.prd_name="'. $prd_name.'";';
+
  $result = mysqli_query($conn, $query);
  $row = mysqli_fetch_assoc($result);
 }
@@ -59,8 +60,9 @@ if (isset($_GET['product'])) {
      <!-- MENU -->
      <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
           <div class="container">
-               <a class="navbar-brand" href="#">
-                    <img src="images/fav/favicon.jpg" alt="Atlas Enterprize" style="max-width: 80px;max-height: 80px;">
+               <a class="navbar-brand" href="index.php">
+                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 50px;max-height: 50px; padding-bottom:10px;">
+                    <span style="color:green;">Shree Siddhivinayak Enterprises</span>
                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -70,7 +72,6 @@ if (isset($_GET['product'])) {
                          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                          <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
                          <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
-                         <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
                          <div class="btn-group">
                               <button type="button" class="btn btn-default" data-bs-toggle="dropdown"
                                    aria-expanded="false" style="color: grey; font-size: 19px;">
@@ -107,7 +108,7 @@ if (isset($_GET['product'])) {
 				<div class="product-deatil">
 						<h5 class="name">
 							<a href="#">
-                                   <?php echo $row["prd_name"]?> 
+                                   <?php echo $row["Product"]?> 
 							</a>
 						</h5>
 						<p class="price-container">

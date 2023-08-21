@@ -12,7 +12,7 @@ if ($conn->connect_errno) {
 
 $prd_name = $_GET['product'];
 
- $query = 'SELECT * FROM products;';
+$query = $query = 'SELECT * FROM products  INNER JOIN '.$_GET['tab'] .' on products.prd_name='.$_GET['tab'].'.prd_name';
  $result = mysqli_query($conn, $query);
  $row = mysqli_fetch_assoc($result);
 ?>
@@ -55,8 +55,9 @@ $prd_name = $_GET['product'];
      <!-- MENU -->
      <nav class="navbar custom-navbar navbar-expand-lg navbar-light bg-light" style="font-size: large;">
           <div class="container">
-               <a class="navbar-brand" href="#">
-                    <img src="images/fav/favicon.jpg" alt="Atlas Enterprize" style="max-width: 80px;max-height: 80px;">
+               <a class="navbar-brand" href="index.php">
+                    <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 50px;max-height: 50px; padding-bottom:10px;">
+                    <span style="color:green;">Shree Siddhivinayak Enterprises</span>
                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -66,7 +67,6 @@ $prd_name = $_GET['product'];
                          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                          <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
                          <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
-                         <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
                          <div class="btn-group">
                               <button type="button" class="btn btn-default" data-bs-toggle="dropdown"
                                    aria-expanded="false" style="color: grey; font-size: 19px;">
@@ -89,59 +89,66 @@ $prd_name = $_GET['product'];
      </nav>
 
     
-<div class="container" style="margin-top:60px;margin-bottom:60px;">
-<div class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
-	<!-- product -->
-    <?php
-    while ($row = mysqli_fetch_assoc($result)) {
-	echo '<div class="product-content product-wrap clearfix">
-		<div class="row">
-				<div class="col-md-5 col-sm-12 col-xs-12">
-					<div class="product-image"> 
-						<img style="width: 194px; height: 228px;" src="images/products/'. $row["img_path"].'" alt="194x228" class="img-responsive"> 
-					</div>
-				</div>
-				<div class="col-md-7 col-sm-12 col-xs-12">
-				<div class="product-deatil">
-						<h5 class="name">
-							<a href="#">'
-                                  .$row["prd_name"]. 
-							'</a>
-						</h5>
-						<p class="price-container">
-                              ₹ <span>'.$row["price"].'</span>/-
-						</p>
-						<span class="tag1"></span> 
-				</div>
-				<div class="description">
-					<p>'.$row["dsrp"].'</p>
-				</div>
-				<div class="product-info smart-form">
-					<div class="row">
-						<div class="col-md-6 col-sm-6 col-xs-6"> 
-							<a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							<div class="rating">';
-                                        for ($i=0; $i <$row["stars"] ; $i++) { 
-                                            echo '<label for="stars-rating-5"><i class="fa fa-star"></i></label>';
-                                        }
-                                        for ($i=$row["stars"]; $i <5; $i++) { 
-                                             echo '<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>';
-                                         }
-                                        echo '
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>';
-                                        }
-    ?>
-	<!-- end product -->
+     <div class="container" style="margin-top:60px;margin-bottom:60px;">
+<div class="row">
+<?php
+$count = 0;
+while ($row = mysqli_fetch_assoc($result)) {
+    if ($count % 2 == 0) {
+        echo '<div class="col-xs-12 col-md-6">';
+    }
+    echo '<div class="product-content product-wrap clearfix">
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <div class="product-image"> 
+                    <img style="width: 194px; height: 228px;" src="images/products/'. $row["img_path"].'" alt="194x228" class="img-responsive"> 
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <div class="product-deatil">
+                    <h5 class="name">
+                        <a href="#">'
+                                .$row["Product"]. 
+                        '</a>
+                    </h5>
+                    <p class="price-container">
+                        ₹ <span>'.$row["price"].'</span>/-
+                    </p>
+                    <span class="tag1"></span> 
+                </div>
+                <div class="description">
+                    <p>'.$row["dsrp"].'</p>
+                </div>
+                <div class="product-info smart-form">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6"> 
+                            <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="rating">';
+                                for ($i=0; $i <$row["stars"] ; $i++) { 
+                                    echo '<label for="stars-rating-5"><i class="fa fa-star"></i></label>';
+                                }
+                                for ($i=$row["stars"]; $i <5; $i++) { 
+                                     echo '<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>';
+                                 }
+                                echo '
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>';
+    if ($count % 2 == 1) {
+        echo '</div>';
+    }
+    $count++;
+}
+?>
 </div>
 </div>
+
 
      <!-- FOOTER -->
      <footer id="footer">
