@@ -39,14 +39,14 @@ INSERT INTO `ch_en` VALUES
 ('Frigerifico Allana Private Limited','Sunny Oil','sunny_oil'),
 ('RSPL LTD','Ghadi Washing Powder','ghadi_powder'),
 ('Tata Chemicals Ltd','Tata Salt','tata_salt'),
-('Shivani Detergents Pvt. Ltd.','SARGAM SOAP',NULL),
+('Shivani Detergents Pvt. Ltd.','SARGAM SOAP','sargam_soap'),
 ('WIPRO ENTERPRISES (P) LTD.','Santoor','santoor'),
-('ADANI WILMAR LTD','Fortune',NULL),
+('ADANI WILMAR LTD','Fortune','fortune'),
 ('DABUR INDIA LTD','Babool Toothpaste','babool_paste'),
 ('NESTLE INDIA LTD','Maggi','maggi'),
 ('Gujarat Tea Processors and Packers Limited','WAG BAKARI Tea','wag_bakri'),
 ('Godrej Consumer Products Limited','GODREJ NO 1 soap','godrej1_soap'),
-('ITC India Ltd.','Chocolate & Home Product',NULL),
+('ITC India Ltd.','Chocolate & Home Product','itc_choco'),
 ('Marico India Ltd','Parachute Hair Oil','parachute_oil'),
 ('Hasmukhrai & Company','SOCIETY Tea','society_tea'),
 ('Mondelēz International, Inc.','CADBURY Chocolate','cadbury'),
@@ -54,8 +54,8 @@ INSERT INTO `ch_en` VALUES
 ('VIBHAVA MARKETING CORPORATION','555 Zadu & Ozone',NULL),
 ('Cholayil Private Limited','MEDIMIX Soap','medimix_soap'),
 ('3M India Ltd','Scotch Brite','scotch_brite'),
-('Ferrero India Pvt. Ltd','Kinder Joy Chocolate & Nutella',NULL),
-('Johnson & Johnson','Baby Powder & Personal Care Product',NULL),
+('Ferrero India Pvt. Ltd','Kinder Joy Chocolate & Nutella','kinder_joy'),
+('Johnson & Johnson','Baby Powder & Personal Care Product','baby_powder'),
 ('Tata Consumer Products Limited','TATA TEA','tata_tea');
 /*!40000 ALTER TABLE `ch_en` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -127,7 +127,10 @@ INSERT INTO `products` VALUES
 ('scotch_brite','scotch_brite.jpg',20,4,'Scotch Brite Scrub'),
 ('tata_tea','tata_tea.jpg',70,5,'Tata Tea'),
 ('baby_powder','baby_powder.jpg',145,5,'Johnson\'s Baby powder, 150g'),
-('kinder_joy','kinder_joy.jpg',40,5,'Kinder Joy');
+('kinder_joy','kinder_joy.jpg',40,5,'Kinder Joy'),
+('sargam_soap','sargam_soap.jpg',20,4,'Sargam Soap'),
+('itc_choco','itc_choco.jpg',100,4,'Various ITC products Available'),
+('fortune','fortune.jpg',180,5,'Fortune Cooking Oil');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-21  0:20:56
+-- Dump completed on 2023-08-22 11:44:41
