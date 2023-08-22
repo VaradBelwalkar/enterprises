@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="container">
                <a class="navbar-brand" href="index.php">
                     <img src="images/fav/favicon.jpg" alt="Chaitanya Enterprize" style="max-width: 50px;max-height: 50px; padding-bottom:10px;">
-                    <span style="color:green;">Shree Siddhivinayak Enterprises</span>
+                    <span style="color:green;">Chaitanya Enterprises</span>
                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
