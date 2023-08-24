@@ -99,7 +99,8 @@ $query = 'SELECT * FROM orders INNER JOIN auth ON orders.client=auth.username WH
 
                          <li class="nav-item"><a class="nav-link" href="product_details.php">Product Details</a></li>
                          <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
-                         <li class="nav-item"><a class="nav-link" href="login.php">Admin Login</a></li>
+                         <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                         <li class="nav-item"><a class="nav-link" href="cart.php">My Cart</a></li>
                     </ul>
                </div>
           </div>
@@ -111,9 +112,11 @@ $query = 'SELECT * FROM orders INNER JOIN auth ON orders.client=auth.username WH
 <?php
 $chk=0;
 $count = 0;
+$tprice=0;
 
 while ($row = mysqli_fetch_assoc($result)) {
      $chk++;
+     $tprice+=$row['price'];
     if ($count % 2 == 0) {
         echo '<div class="col-xs-12 col-md-6">';
     }
@@ -165,15 +168,20 @@ while ($row = mysqli_fetch_assoc($result)) {
     }
     $count++;
 }
+
+
+echo '</div>
+</div>';
+
 if ($chk == 0){
-     echo ' <div style="display: flex; justify-content: center; align-items: center; height: 400px; margin: 0; font-family: Arial, sans-serif;">
-     <p style="font-size: 40px;">Your Cart is Empty! Try adding products to checkout.</p>
+     echo ' <div style="display: flex; justify-content: center; align-items: center; height: 50px; margin: 0; font-family: Arial, sans-serif;">
+     <p style="font-size: 20px;color: green;">Your Cart is Empty! Try adding products to checkout.</p>
  </div>';
+} else{
+     echo ' <div style="display: flex; justify-content: center; align-items: center; height: 50px; margin: 0; font-family: Arial, sans-serif;">
+     <p style="font-size: 20px;color: green;">Your Total Checkout Price: ₹ '.$tprice.'</p> </div>';
 }
 ?>
-</div>
-</div>
-
 
      <!-- FOOTER -->
      <footer id="footer">
