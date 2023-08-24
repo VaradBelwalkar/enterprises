@@ -1,19 +1,18 @@
 <?php
-
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
      $servername = "localhost"; // Replace with your server name
      $username = "root"; // Replace with your MySQL username
      $password = "temp"; // Replace with your MySQL password
      $database = "atlas_schema"; // Replace with your database name
-// Create a connection
+     
+     // Create a connection
      $conn = new mysqli($servername, $username, $password, $database);
 
      if ($conn->connect_errno) {
           echo "Connection Error.";
      }
+
      // Get the username and password from the form
      $username = $_POST['username'];
      $password = $_POST['password'];
@@ -23,26 +22,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      $password = mysqli_real_escape_string($conn, $password);
 
      // Prepare a statement with a parameterized query
-     $query = "SELECT * FROM auth WHERE username = '$username' AND password = '$password'";
-     $result = mysqli_query($conn, $query);
+     $query = "SELECT * FROM auth WHERE username = ?";
+     $stmt = $conn->prepare($query);
+     $stmt->bind_param("s", $username);
+     $stmt->execute();
+     $result = $stmt->get_result();
 
-     // Check if the query was successful
-     if ($result && mysqli_num_rows($result) > 0) {
-          // Authentication successful
-          session_start();
-          $_SESSION['authenticated'] = true;
-          echo $_SESSION['authenticated'];
-          header('Location: index.php');
+     // Check if the query was successful and rows are returned
+     if ($result && $result->num_rows > 0) {
+          $row = $result->fetch_assoc();
+          $storedHashedPassword = $row['userpass'];
+
+          // Verify the provided password with the stored hashed password
+          if (password_verify($password,$storedHashedPassword)) {
+               // Authentication successful
+               session_start();
+               $_SESSION['authenticated'] = true;
+               $_SESSION['username'] = $username;
+               header('Location: index.php');
+          } else {
+               // Authentication failed
+               echo "Invalid username or password.";
+          }
      } else {
           // Authentication failed
           echo "Invalid username or password.";
      }
 
-     // Close the connection
+     // Close the statement and connection
+     $stmt->close();
      $conn->close();
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -109,7 +121,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                          <li class="nav-item"><a class="nav-link" href="product_details.php">Product Details</a></li>
                          <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
-                         <li class="nav-item"><a class="nav-link" href="login.php">Admin Login</a></li>
+                         <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                         <li class="nav-item"><a class="nav-link" href="cart.php">My Cart</a></li>
                     </ul>
                </div>
           </div>
@@ -131,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                          <input type="submit" value="Login">
                     </div>
                     <div class="login-form-group text-center">
-                         Don't have an account? <a href="#" class="register-link">Register</a>
+                         Don't have an account? <a href="register.php" class="register-link">Register</a>
                     </div>
                </form>
           </div>
@@ -204,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               </div>
                               <address>
                                    <p>+91 9844093177</p>
-                                   <p><a href="mailto:youremail.com">agmpublicschool1@gmail.com</a></p>
+                                   <p><a href="mailto:youremail.com">somemail@gmail.com</a></p>
                               </address>
 
                               <div class="footer_menu">

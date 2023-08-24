@@ -1,26 +1,38 @@
 <?php
+// Start or resume the session
+session_start();
+
 $servername = "localhost"; // Replace with your server name
 $username = "root"; // Replace with your MySQL username
 $password = "temp"; // Replace with your MySQL password
 $database = "atlas_schema"; // Replace with your database name
+
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_errno) {
-     echo "Connection Error.";
+    echo "Connection Error.";
 }
 
-if (isset($_GET['product'])) {
-     $prd_name = $_GET['product'];
-
- $query = 'SELECT * FROM products  INNER JOIN '.$_GET['tab'] .' on products.prd_name='.$_GET['tab'].'.prd_name WHERE products.prd_name="'. $prd_name.'";';
-
- $result = mysqli_query($conn, $query);
- $row = mysqli_fetch_assoc($result);
+// Check if the user is authenticated
+if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
+    // Redirect to the login page if not authenticated
+    header('Location: login.php');
+    exit();
 }
+
+    $usr_name = $_SESSION["username"];
+echo "DKLFJDSLKf";
+    $query = 'SELECT * FROM orders INNER JOIN auth ON orders.client=auth.username WHERE auth.username = ?';
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $usr_name);
+$stmt->execute();
+$result = $stmt->get_result();
+    $row = mysqli_fetch_assoc($result);
+
 
 ?>
-
+     
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,7 +100,7 @@ if (isset($_GET['product'])) {
                          <li class="nav-item"><a class="nav-link" href="product_details.php">Product Details</a></li>
                          <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
                          <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-                         <li class="nav-item"><a class="nav-link" href="cart.php">My Cart</a></li>
+                         <li class="nav-item"><a class="nav-link" href="#top">My Cart</a></li>
                     </ul>
                </div>
           </div>
@@ -98,50 +110,29 @@ if (isset($_GET['product'])) {
 <div class="container" style="margin-top:60px;margin-bottom:60px;">
 <div class=" col-md-6 bootstrap snippets bootdeys">
 	<!-- product -->
-	<div class="product-content product-wrap clearfix">
-		<div class="row">
-				<div class="col-md-5 col-sm-12 col-xs-12">
-					<div class="product-image"> 
-						<img style="width: 194px; height: 228px;" src="images/products/<?php echo $row["img_path"]?>" alt="194x228" class="img-responsive"> 
-					</div>
-				</div>
-				<div class="col-md-7 col-sm-12 col-xs-12">
-				<div class="product-deatil">
-						<h5 class="name">
-							<a href="#">
-                                   <?php echo $row["Product"]?> 
-							</a>
-						</h5>
-						<p class="price-container">
-                              ₹ <span><?php echo  $row["price"]?></span>/-
-						</p>
-						<span class="tag1"></span> 
-				</div>
-				<div class="description">
-					<p><?php echo $row["dsrp"]?></p>
-				</div>
-				<div class="product-info smart-form">
-					<div class="row">
-						<div class="col-md-6 col-sm-6 col-xs-6"> 
-							<a href="add2cart.php/?product=<?php echo $_GET['product']?>". class="btn btn-success">Add to cart</a>
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							<div class="rating">
-                                        <?php
-                                        for ($i=0; $i <$row["stars"] ; $i++) { 
-                                            echo '<label for="stars-rating-5"><i class="fa fa-star"></i></label>';
-                                        }
-                                        for ($i=$row["stars"]; $i <5; $i++) { 
-                                             echo '<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>';
-                                         }
-                                        ?>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="product-info smart-form">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <!-- Form to add product to cart -->
+            <form method="post">
+                <input type="hidden" name="product_name" value="<?php echo $row['Product']; ?>">
+                <button type="submit" name="add_to_cart" class="btn btn-success">Add to Cart</button>
+            </form>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="rating">
+                <?php
+                for ($i = 0; $i < $row["stars"]; $i++) {
+                    echo '<label for="stars-rating-5"><i class="fa fa-star"></i></label>';
+                }
+                for ($i = $row["stars"]; $i < 5; $i++) {
+                    echo '<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>';
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
 	<!-- end product -->
 </div>
 </div>

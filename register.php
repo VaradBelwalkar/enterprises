@@ -1,25 +1,56 @@
 <?php
-$servername = "localhost"; // Replace with your server name
-$username = "root"; // Replace with your MySQL username
-$password = "temp"; // Replace with your MySQL password
-$database = "atlas_schema"; // Replace with your database name
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $database);
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+     $servername = "localhost"; // Replace with your server name
+     $username = "root"; // Replace with your MySQL username
+     $password = "temp"; // Replace with your MySQL password
+     $database = "atlas_schema"; // Replace with your database name
+     
+     // Create a connection
+     $conn = new mysqli($servername, $username, $password, $database);
 
-if ($conn->connect_errno) {
-     echo "Connection Error.";
+     if ($conn->connect_errno) {
+          echo "Connection Error.";
+     }
+
+     // Get the username, password, and email from the form
+     $username = $_POST['username'];
+     $plainPassword = $_POST['password']; // Store the plain password temporarily
+     $email = $_POST['email'];
+
+     // Perform sanitization on the input
+     $username = mysqli_real_escape_string($conn, $username);
+     $email = mysqli_real_escape_string($conn, $email);
+
+     // Hash the password securely
+     $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
+
+     // Prepare a statement with a parameterized query to prevent SQL injection
+     $query = "INSERT INTO auth (username, userpass, email) VALUES (?, ?, ?)";
+     $stmt = $conn->prepare($query);
+     $stmt->bind_param("sss", $username, $hashedPassword, $email);
+     
+     // Execute the prepared statement
+     $result = $stmt->execute();
+
+     // Check if the query was successful
+     if ($result) {
+          // Authentication successful
+          session_start();
+          $_SESSION['authenticated'] = true;
+          $_SESSION['username'] = $username;
+          header('Location: index.php');
+     } else {
+          // Authentication failed
+          echo "Invalid username or password.";
+     }
+
+     // Close the statement and connection
+     $stmt->close();
+     $conn->close();
 }
-
-if (isset($_GET['product'])) {
-     $prd_name = $_GET['product'];
-
- $query = 'SELECT * FROM products  INNER JOIN '.$_GET['tab'] .' on products.prd_name='.$_GET['tab'].'.prd_name WHERE products.prd_name="'. $prd_name.'";';
-
- $result = mysqli_query($conn, $query);
- $row = mysqli_fetch_assoc($result);
-}
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +58,6 @@ if (isset($_GET['product'])) {
 <head>
 
      <title>Chaitanya Enterprises</title>
- 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -39,7 +69,7 @@ if (isset($_GET['product'])) {
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
      <link rel="stylesheet" href="css/font-awesome.min.css">
-
+     <link rel="stylesheet" href="css/login.css">
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/templatemo-style.css">
 
@@ -94,57 +124,62 @@ if (isset($_GET['product'])) {
           </div>
      </nav>
 
-    
-<div class="container" style="margin-top:60px;margin-bottom:60px;">
-<div class=" col-md-6 bootstrap snippets bootdeys">
-	<!-- product -->
-	<div class="product-content product-wrap clearfix">
-		<div class="row">
-				<div class="col-md-5 col-sm-12 col-xs-12">
-					<div class="product-image"> 
-						<img style="width: 194px; height: 228px;" src="images/products/<?php echo $row["img_path"]?>" alt="194x228" class="img-responsive"> 
-					</div>
-				</div>
-				<div class="col-md-7 col-sm-12 col-xs-12">
-				<div class="product-deatil">
-						<h5 class="name">
-							<a href="#">
-                                   <?php echo $row["Product"]?> 
-							</a>
-						</h5>
-						<p class="price-container">
-                              ₹ <span><?php echo  $row["price"]?></span>/-
-						</p>
-						<span class="tag1"></span> 
-				</div>
-				<div class="description">
-					<p><?php echo $row["dsrp"]?></p>
-				</div>
-				<div class="product-info smart-form">
-					<div class="row">
-						<div class="col-md-6 col-sm-6 col-xs-6"> 
-							<a href="add2cart.php/?product=<?php echo $_GET['product']?>". class="btn btn-success">Add to cart</a>
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							<div class="rating">
-                                        <?php
-                                        for ($i=0; $i <$row["stars"] ; $i++) { 
-                                            echo '<label for="stars-rating-5"><i class="fa fa-star"></i></label>';
-                                        }
-                                        for ($i=$row["stars"]; $i <5; $i++) { 
-                                             echo '<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>';
-                                         }
-                                        ?>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end product -->
-</div>
-</div>
+     <section id="login">
+          <div class="login-container" style="max-width: 800px;">
+               <h2>Register Here:</h2>  
+               <form action="register.php" method="POST">
+                    <div class="login-form-group">
+                         <label for="username">Username:</label>
+                         <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="login-form-group">
+                         <label for="password">Password:</label>
+                         <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="login-form-group">
+                         <label for="email">Email(Optional):</label>
+                         <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="login-form-group">
+                         <input type="submit" value="Register">
+                    </div>
+               </form>
+          </div>
+     </section>
+
+     <!-- CONTACT -->
+     <section id="contact">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                         <form id="contact-form" role="form" action="" method="post">
+                              <div class="section-title">
+                                   <h2>Contact us <small>we love conversations. let us talk!</small></h2>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12">
+                                   <input type="text" class="form-control" placeholder="Enter full name" name="name"
+                                        required="">
+
+                                   <input type="email" class="form-control" placeholder="Enter mobile number"
+                                        name="email" required="">
+
+                                   <textarea class="form-control" rows="6" placeholder="Tell us about your message"
+                                        name="message" required=""></textarea>
+                              </div>
+
+                              <div class="col-md-4 col-sm-12">
+                                   <input type="submit" class="form-control" name="send message" value="Send Message">
+                              </div>
+
+                         </form>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
 
      <!-- FOOTER -->
      <footer id="footer">
@@ -178,37 +213,8 @@ if (isset($_GET['product'])) {
                                    <h2>Contact Info</h2>
                               </div>
                               <address>
-                                   <p>
-                                        <?php
-
-                                        $query = "SELECT s2 FROM metainfo WHERE  s1='phone'";
-                                        $result = mysqli_query($conn, $query);
-
-                                        // Fetch the result row
-                                        $row = mysqli_fetch_assoc($result);
-
-                                        // Display a specific column from the result
-                                        echo $row['s2'];
-
-                                        ?>
-                                   </p>
-                                   <p><a href="mailto:youremail.com">
-                                             <?php
-
-                                             $query = "SELECT s2 FROM metainfo WHERE  s1='email'";
-                                             $result = mysqli_query($conn, $query);
-
-                                             // Fetch the result row
-                                             $row = mysqli_fetch_assoc($result);
-
-                                             // Display a specific column from the result
-                                             echo $row['s2'];
-
-
-                                             mysqli_close($conn);
-
-                                             ?>
-                                        </a></p>
+                                   <p>+91 9844093177</p>
+                                   <p><a href="mailto:youremail.com">somemail@gmail.com</a></p>
                               </address>
 
                               <div class="footer_menu">
@@ -219,7 +225,7 @@ if (isset($_GET['product'])) {
                     <div class="col-md-4 col-sm-12">
                          <div class="footer-info newsletter-form">
                               <div>
-                                   <p>Designed & Developed by <i>Company_Name Limited</p>
+                                   <p>Designed & Developed by <i>Company_Name Limited </p>
                               </div>
                          </div>
                     </div>
@@ -236,54 +242,6 @@ if (isset($_GET['product'])) {
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
 
-     <script>
-          // Array of image file paths
-          const images = ["../images/slider-image1.jpg", "../images/slider-image2.jpg",
-               "../images/slider-image3.jpg"
-               , "../images/gallary-chem.jpg",
-               "../images/gallary-phy.jpg",
-               "../images/gallary-g1.jpg",
-               "../images/gallary-g2.jpg",
-               "../images/gallary-g3.jpg",
-               "../images/gallary-study.jpg",
-               "../images/gallary-lib.jpg",
-               "../images/gallary-com.jpg"
-
-
-
-          ];
-
-          let currentIndex = 0;
-          const currentImage = document.getElementById('current-image');
-          const prevButton = document.getElementById('prev-button');
-          const nextButton = document.getElementById('next-button');
-
-          // Function to update the image source based on the current index
-          function updateImage() {
-               currentImage.src = images[currentIndex];
-          }
-
-          // Event listener for the previous button
-          prevButton.addEventListener('click', () => {
-               currentIndex--;
-               if (currentIndex < 0) {
-                    currentIndex = images.length - 1;
-               }
-               updateImage();
-          });
-
-          // Event listener for the next button
-          nextButton.addEventListener('click', () => {
-               currentIndex++;
-               if (currentIndex >= images.length) {
-                    currentIndex = 0;
-               }
-               updateImage();
-          });
-
-          // Initialize the image on page load
-          updateImage();
-     </script>
 </body>
 
 </html>
