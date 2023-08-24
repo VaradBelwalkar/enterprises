@@ -21,25 +21,25 @@ if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
     exit();
 }
 
-    $usr_name = $_SESSION["username"];
-echo "DKLFJDSLKf";
-    $query = 'SELECT * FROM orders INNER JOIN auth ON orders.client=auth.username WHERE auth.username = ?';
-$stmt = $conn->prepare($query);
-$stmt->bind_param("s", $usr_name);
-$stmt->execute();
-$result = $stmt->get_result();
-    $row = mysqli_fetch_assoc($result);
+$usr_name = $_SESSION["username"];
+
+$query = 'SELECT * FROM orders INNER JOIN auth ON orders.client=auth.username WHERE auth.username = "'.$usr_name.'";';
+
+    // Join with the product_details table based on prd_name
+    $query = 'SELECT *
+              FROM (SELECT * FROM orders INNER JOIN auth ON orders.client=auth.username WHERE auth.username = "'.$usr_name.'") AS o 
+              INNER JOIN products AS pd ON o.prd_name = pd.prd_name';
+     $result = mysqli_query($conn, $query);
 
 
 ?>
-     
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
      <title>Chaitanya Enterprises</title>
- 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
@@ -99,43 +99,81 @@ $result = $stmt->get_result();
 
                          <li class="nav-item"><a class="nav-link" href="product_details.php">Product Details</a></li>
                          <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
-                         <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-                         <li class="nav-item"><a class="nav-link" href="#top">My Cart</a></li>
+                         <li class="nav-item"><a class="nav-link" href="login.php">Admin Login</a></li>
                     </ul>
                </div>
           </div>
      </nav>
 
     
-<div class="container" style="margin-top:60px;margin-bottom:60px;">
-<div class=" col-md-6 bootstrap snippets bootdeys">
-	<!-- product -->
-	<div class="product-info smart-form">
-    <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-6">
-            <!-- Form to add product to cart -->
-            <form method="post">
-                <input type="hidden" name="product_name" value="<?php echo $row['Product']; ?>">
-                <button type="submit" name="add_to_cart" class="btn btn-success">Add to Cart</button>
-            </form>
-        </div>
-        <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="rating">
-                <?php
-                for ($i = 0; $i < $row["stars"]; $i++) {
-                    echo '<label for="stars-rating-5"><i class="fa fa-star"></i></label>';
-                }
-                for ($i = $row["stars"]; $i < 5; $i++) {
-                    echo '<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>';
-                }
-                ?>
+     <div class="container" style="margin-top:60px;margin-bottom:60px;">
+<div class="row">
+<?php
+$chk=0;
+$count = 0;
+
+while ($row = mysqli_fetch_assoc($result)) {
+     $chk++;
+    if ($count % 2 == 0) {
+        echo '<div class="col-xs-12 col-md-6">';
+    }
+    echo '<div class="product-content product-wrap clearfix">
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <div class="product-image"> 
+                    <img style="width: 194px; height: 228px;" src="images/products/'. $row["img_path"].'" alt="194x228" class="img-responsive"> 
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <div class="product-deatil">
+                    <h5 class="name">
+                        <a href="#">'
+                                .$row["drsp"]. 
+                        '</a>
+                    </h5>
+                    <p class="price-container">
+                        ₹ <span>'.$row["price"].'</span>/-
+                    </p>
+                    <span class="tag1"></span> 
+                </div>
+                <div class="description">
+                    <p>'.$row["dsrp"].'</p>
+                </div>
+                <div class="product-info smart-form">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6"> 
+                            <a href="rmcart.php/?product='.$row['prd_name'].'" class="btn btn-danger">Remove</a>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="rating">';
+                                for ($i=0; $i <$row["stars"] ; $i++) { 
+                                    echo '<label for="stars-rating-5"><i class="fa fa-star"></i></label>';
+                                }
+                                for ($i=$row["stars"]; $i <5; $i++) { 
+                                     echo '<label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>';
+                                 }
+                                echo '
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </div>';
+    if ($count % 2 == 1) {
+        echo '</div>';
+    }
+    $count++;
+}
+if ($chk == 0){
+     echo ' <div style="display: flex; justify-content: center; align-items: center; height: 400px; margin: 0; font-family: Arial, sans-serif;">
+     <p style="font-size: 40px;">Your Cart is Empty! Try adding products to checkout.</p>
+ </div>';
+}
+?>
 </div>
-	<!-- end product -->
 </div>
-</div>
+
 
      <!-- FOOTER -->
      <footer id="footer">

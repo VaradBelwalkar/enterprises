@@ -3,23 +3,42 @@ $servername = "localhost"; // Replace with your server name
 $username = "root"; // Replace with your MySQL username
 $password = "temp"; // Replace with your MySQL password
 $database = "atlas_schema"; // Replace with your database name
+
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_errno) {
-     echo "Connection Error.";
+    echo "Connection Error.";
+    exit();
 }
 
 if (isset($_GET['product'])) {
-     $prd_name = $_GET['product'];
+    $prd_name = $_GET['product'];
 
- $query = 'SELECT * FROM products  INNER JOIN '.$_GET['tab'] .' on products.prd_name='.$_GET['tab'].'.prd_name WHERE products.prd_name="'. $prd_name.'";';
+    $tab_name = $_GET['tab'];
 
- $result = mysqli_query($conn, $query);
- $row = mysqli_fetch_assoc($result);
+    // Check if the provided table name is valid to prevent potential SQL injection
+    $allowed_tabs = array("ss_en", "ch_en"); // Add allowed table names here
+    if (!in_array($tab_name, $allowed_tabs)) {
+        echo "Invalid table name.";
+        exit();
+    }
+
+    // Use prepared statement to prevent SQL injection
+    $query = 'SELECT * FROM products INNER JOIN '.$tab_name.' ON products.prd_name = '.$tab_name.'.prd_name WHERE products.prd_name = ?';
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $prd_name);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $row = mysqli_fetch_assoc($result);
+
+    $stmt->close();
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -123,7 +142,7 @@ if (isset($_GET['product'])) {
 				<div class="product-info smart-form">
 					<div class="row">
 						<div class="col-md-6 col-sm-6 col-xs-6"> 
-							<a href="add2cart.php/?product=<?php echo $_GET['product']?>". class="btn btn-success">Add to cart</a>
+							<a href="addcart.php/?product=<?php echo $_GET['product']?>". class="btn btn-success">Add to cart</a>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-6">
 							<div class="rating">
