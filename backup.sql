@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `auth`
+--
+
+DROP TABLE IF EXISTS `auth`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth` (
+  `username` text DEFAULT NULL,
+  `userpass` text DEFAULT NULL,
+  `email` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth`
+--
+
+LOCK TABLES `auth` WRITE;
+/*!40000 ALTER TABLE `auth` DISABLE KEYS */;
+INSERT INTO `auth` VALUES
+('temp','$2y$10$BGdKMQbGUdhvuAPbvkjHLO7F9pw4lYojmNlqNGQU7IKmpFrsOrP/O','timo@gmail.com'),
+('limo','$2y$10$op733GVObfqIdSGMahuRMuOzs3IGUPHxbLaGCMskaKMmroFV7oDqC','timo@gmail.com');
+/*!40000 ALTER TABLE `auth` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ch_en`
 --
 
@@ -86,6 +112,32 @@ INSERT INTO `metainfo` VALUES
 ('phone','59827983756'),
 ('email','somemail@gmail.com');
 /*!40000 ALTER TABLE `metainfo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `orders` (
+  `client` text DEFAULT NULL,
+  `prd_name` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES
+('temp','ghadi_powder'),
+('temp','sunny_oil'),
+('temp','ghadi_powder');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -172,4 +224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-22 11:44:41
+-- Dump completed on 2023-08-24 15:34:45
