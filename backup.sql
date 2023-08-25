@@ -134,9 +134,9 @@ CREATE TABLE `orders` (
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` VALUES
-('temp','ghadi_powder'),
-('temp','sunny_oil'),
-('temp','ghadi_powder');
+('limo','tata_salt'),
+('temp','tata_salt'),
+('temp','wag_bakri');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,4 +224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-24 15:34:45
+-- Dump completed on 2023-08-25  9:03:19
